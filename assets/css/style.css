@@ -1,0 +1,83 @@
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  width: 720px;
+  margin: auto;
+}
+.form-simplex {
+  margin-top: 40px;
+  padding: 10px;
+}
+[data-js='submit-simplex'] {
+  margin-left: 10px;
+}
+
+.inputs {
+  display: block;
+  margin: 2px 0px 10px;
+  outline: none;
+  box-sizing: border-box;
+}
+.inputs:hover {
+  border: 2px solid #ccc;
+}
+.button-submit {
+  border-radius: 3px;
+  border: 1px solid transparent;
+  padding: 7px 7px;
+  font-size: 0.9em;
+  outline: none;
+}
+.button-submit:hover {
+  background-color: #cccccc;
+}
+
+.label-form-object {
+  display: inline-block;
+}
+.lessOrEqual {
+  margin: 0 2px 0 5px;
+}
+.input-form-object {
+  display: inline-block;
+  outline: none;
+  text-align: right;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  width: 5%;
+  font-size: 1.2em;
+}
+.fragment {
+  display: block;
+}
+
+.subject {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10;
+}
+
+.buttonOptimum {
+  margin: 20px 0 0 ;
+}
+
+.buttonCancel {
+  margin: 0 0 20px 10px;
+}
+.buttonCancel:hover {
+  background-color: #f15050ed;
+  color: white;
+  font-weight: 500;
+}
+
+table {
+  width: 50%;
+  height: 200px;
+  padding: 20px;
+  border-collapse: collapse;
+  margin: 20px 0 30px;
+}
+
+td {
+  text-align: center;
+  border: 1px solid #ccc;
+}

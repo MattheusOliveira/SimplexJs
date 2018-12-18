@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Simplex</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Niramit|Open+Sans" rel="stylesheet">
+  </head>
+  <body>
+      <h1>Método Simplex</h1>
+      <form action="#" class="form-simplex" data-js="submit-form" >
+        <label for="variaveis">Número de variáveis:</label>
+        <input class="inputs" data-js ="variaveis"type="text" id="variaveis" autocomplete="off" required>
+        <label for="restricoes">Número de restrições:</label>
+        <input class="inputs" data-js ="restricoes"type="text" id="restricoes" autocomplete="off" required>
+      	<button class="button-submit" data-js="button-submit" type="submit">Modelar</button>
+      </form>
+
+      <form action="#" data-js ="submit-simplex">
+      </form>
+      <div data-js="aux"></div>
+  <script src ="assets/js/dom.js" data-js="script"></script>
+  <script src="assets/js/main.js"></script>
+  </body>
+</html>
