@@ -16,10 +16,12 @@ body {
   margin: 2px 0px 10px;
   outline: none;
   box-sizing: border-box;
+  width: 24%;
+
 }
-.inputs:hover {
+/* .inputs:hover {
   border: 2px solid #ccc;
-}
+} */
 .button-submit {
   border-radius: 3px;
   border: 1px solid transparent;
@@ -43,7 +45,7 @@ body {
   text-align: right;
   border-radius: 5px;
   border: solid 1px #ccc;
-  width: 5%;
+  width: 6%;
   font-size: 1.2em;
 }
 .fragment {
@@ -80,4 +82,11 @@ table {
 td {
   text-align: center;
   border: 1px solid #ccc;
+}
+tbody tr:nth-child(1) {
+  background-color: #ccc;
+}
+[data-js='input-restriction-res'] {
+  text-align: left;
+  width: 10%;
 }

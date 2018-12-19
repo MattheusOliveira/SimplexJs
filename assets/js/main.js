@@ -3,6 +3,7 @@
 
    const app = (function(){
      return {
+       'iteracao': 0,
        init: function init(){
          this.initEvents();
        },
@@ -16,6 +17,10 @@
           let formSimplexSubmit = $('[data-js="submit-simplex"]').get();
           let numberVariables = $('[data-js="variaveis"]').get().value;
           let numberRestrictions = $('[data-js="restricoes"]').get().value;
+          if(numberRestrictions ==='selecione' || numberVariables === 'selecione'){
+            alert('Por favor selecione número de variáveis e restrições!');
+            return app.handleLocationReload(event)
+          }
           formSimplexSubmit.appendChild(app.insertFormObject(numberVariables));
           formSimplexSubmit.appendChild(app.insertFormRestriction(numberRestrictions, numberVariables));
           app.cancelModel(formSimplex);
@@ -37,7 +42,6 @@
         },
         structModel: function structModel(event) {
           event.preventDefault();
-
           let numberRestrictions = $('[data-js="restricoes"]').get().value;
           let numberVariables = $('[data-js="variaveis"]').get().value;
           let arrayObjetForm = [];
@@ -49,7 +53,6 @@
           $('[data-js="input-restriction"]').forEach(function(item) {
             arrayRestrictionPart.push(Number(item.value))
           });
-
           // let remove = Number(numberRestrictions) + 1; pega a ultima restrição
           let remove = Number(numberVariables);
           let aux = [];
@@ -58,6 +61,12 @@
               arrayRestriction.push(aux);
           }
           app.optimizeModel(arrayObjetForm, arrayRestriction);
+
+          //remove button otimizar
+          let formSimplexSubmit = $('[data-js="submit-simplex"]').get();
+          let buttonOptimum = $('[class="button-submit buttonOptimum"]').get();
+          let garbage = formSimplexSubmit.removeChild(buttonOptimum);
+
         },
         optimizeModel: function optimizeModel(arrayObjetForm, arrayRestriction) {
             let numberRestrictions = $('[data-js="restricoes"]').get().value;
@@ -82,6 +91,20 @@
                 let inputConvert = Number($('[data-js="input-restriction-res"]').get(i).value);
                 restriction[i].push(inputConvert);
             }
+            //agora
+            let aux;
+            let aux2;
+debugger;            if(app.iteracao === 0) {
+             app.iteracao++
+              aux = restriction;
+              aux2 = objetivo;
+             aux.unshift(aux2)
+             console.log(aux)
+             app.createTable(aux);
+           }
+
+           restriction.shift();
+           console.log(restriction);
             let response = app.calculateObject(objetivo, restriction);
             console.log(app.newCalculateObject(response));
 
@@ -174,7 +197,10 @@
               }
               console.log(indexVarSai + ' ' + indexLinhaPivo);
               app.inAndOut(indexVarSai, indexLinhaPivo);
-              app.createTable(indexLinhaPivo, indexVarSai,arrayAll)
+              console.log(arrayAll)
+              // app.createTable(indexLinhaPivo, indexVarSai,arrayAll)
+               app.createTable(arrayAll)
+
               return arrayAll;
               // console.log(pivo);
               // console.log(linhaPivo);
@@ -226,6 +252,7 @@
           for(let i = 0; i < numberVariables; i++){
               let input = document.createElement('input');
               input.setAttribute('class','input-form-object');
+              input.setAttribute('type', 'number');
               input.setAttribute('id','object'+[i]);
               input.setAttribute('data-js', 'inputs-values');
               let label = document.createElement('label');
@@ -250,6 +277,7 @@
             for(let j = 0; j < numberVariables; j++) {
               let input = document.createElement('input');
               input.setAttribute('class','input-form-object');
+              input.setAttribute('type', 'number');
               input.setAttribute('id','object'+[j]);
               input.setAttribute('data-js', 'input-restriction')
               let label = document.createElement('label');
@@ -269,6 +297,7 @@
                 div.appendChild(lessOrEqual);
                 let inputb = document.createElement('input');
                 inputb.setAttribute('class', 'input-form-object ');
+                inputb.setAttribute('type', 'number');
                 inputb.setAttribute('data-js','input-restriction-res');
                 //fragment.appendChild(inputb);
                 div.appendChild(inputb)
@@ -292,7 +321,7 @@
           p.textContent = 'Entra na base: ' + 'X'+entra +'|'+'Sai da base: ' + 'Xf'+sai;
           form.appendChild(p);
         },
-        createTable: function createTable (indexLinhaPìvo, indexVarSai, arrayAll) {
+        createTable: function createTable ( arrayAll) {
           let numberRestrictions = $('[data-js="restricoes"]').get().value;
           let numberVariables =  $('[data-js="variaveis"]').get().value;
           let arrayAllOriginal = arrayAll;
