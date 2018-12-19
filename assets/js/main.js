@@ -33,10 +33,7 @@
           let formSimplex = $('[data-js="submit-form"]').get();
           let buttonModelar = $('[data-js="button-submit"]').get();
           let garbage = formSimplex.removeChild(buttonModelar);
-          // let buttonCancel = document.createElement('button');
-          // buttonCancel.textContent = 'Cancelar';
-          // buttonCancel.setAttribute('class','button-submit buttonCancel');
-          // buttonCancel.setAttribute('data-js', 'buttonCancel');
+
           formSimplex.insertAdjacentHTML('afterend', '<button class="button-submit buttonCancel" data-js="buttonCancel">Cancelar</button>');
           $('[data-js="buttonCancel"]').on('click',this.handleLocationReload);
         },
@@ -53,7 +50,6 @@
           $('[data-js="input-restriction"]').forEach(function(item) {
             arrayRestrictionPart.push(Number(item.value))
           });
-          // let remove = Number(numberRestrictions) + 1; pega a ultima restrição
           let remove = Number(numberVariables);
           let aux = [];
             for(let i = 0; i < numberRestrictions; i++){
@@ -83,18 +79,14 @@
                  restriction[i] = restriction[i].concat(arrayAux);
                  restriction[i].unshift(0);
                  arrayAux = [];
-                 // $('[data-js="input-restriction-res"]').forEach(function(item) {
-                 //   if()
-                 //   restriction[i].push(Number(item.value))
-                 //   i++
-                 // });
+
                 let inputConvert = Number($('[data-js="input-restriction-res"]').get(i).value);
                 restriction[i].push(inputConvert);
             }
             //agora
             let aux;
             let aux2;
-debugger;            if(app.iteracao === 0) {
+            if(app.iteracao === 0) {
              app.iteracao++
               aux = restriction;
               aux2 = objetivo;
@@ -191,8 +183,6 @@ debugger;            if(app.iteracao === 0) {
                         aux[j] = (aux[j] + arrayAll[i][j]);
                       }
                       arrayAll[i] = aux;
-                      // console.log(aux);
-                      // console.log(arrayAll);
                   }
               }
               console.log(indexVarSai + ' ' + indexLinhaPivo);
@@ -284,8 +274,7 @@ debugger;            if(app.iteracao === 0) {
               label.setAttribute('class','label-form-object');
               label.setAttribute('for','object'+[j]);
               label.textContent = 'x'+[j+1];
-            //  fragment.appendChild(input);
-            //  fragment.appendChild(label);
+
               div.appendChild(input);
               div.appendChild(label);
 
@@ -293,13 +282,11 @@ debugger;            if(app.iteracao === 0) {
                 let lessOrEqual = document.createElement('label');
                 lessOrEqual.textContent = '≤';
                 lessOrEqual.setAttribute('class','label-form-object lessOrEqual');
-                //fragment.appendChild(lessOrEqual);
                 div.appendChild(lessOrEqual);
                 let inputb = document.createElement('input');
                 inputb.setAttribute('class', 'input-form-object ');
                 inputb.setAttribute('type', 'number');
                 inputb.setAttribute('data-js','input-restriction-res');
-                //fragment.appendChild(inputb);
                 div.appendChild(inputb)
               }
             }
@@ -325,8 +312,7 @@ debugger;            if(app.iteracao === 0) {
           let numberRestrictions = $('[data-js="restricoes"]').get().value;
           let numberVariables =  $('[data-js="variaveis"]').get().value;
           let arrayAllOriginal = arrayAll;
-          // let newObjective = arrayAll[0];
-          // let newRestriction = arrayAll.shift();
+
           let fragment = document.createDocumentFragment();
 
           let table = document.createElement('table');
@@ -336,11 +322,6 @@ debugger;            if(app.iteracao === 0) {
           let tbody = document.createElement('tbody');
           let tfoot = document.createElement('tfoot');
           let form = $('[data-js="submit-simplex"]').get();
-
-
-          // let head = $('[data-js="head-variables"]').get();
-          // let body = $('[data-js="body"]').get();
-          // head.innerHTML = '<td>Z</td>';
 
           let tr = document.createElement('tr');
           let z = document.createElement('td');
@@ -352,7 +333,6 @@ debugger;            if(app.iteracao === 0) {
             tr.appendChild(td);
           }
           thead.appendChild(tr);
-
 
           for(let i = 0; i < numberRestrictions; i++) {
               let td = document.createElement('td');
@@ -373,13 +353,11 @@ debugger;            if(app.iteracao === 0) {
               }
               tbody.appendChild(trBody);
           }
-          //fragment.appendChild(table);
           table.appendChild(thead);
           table.appendChild(tbody);
           form.appendChild(table);
           return arrayAllOriginal;
         }
-
      }
    })();
 
